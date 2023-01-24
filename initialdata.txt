@@ -1,0 +1,33 @@
+CREATE (Stormwind:Department {name:"Stormwind"})
+CREATE (Ironforge:Department {name:"Ironforge"})
+CREATE (Darnassus:Department {name:"Darnassus"})
+CREATE (Gnomeregan:Department {name:"Gnomeregan"})
+
+CREATE (Anduin:Employee {name:"Anduin", last_name:"Wrynn", job:"High King of the Alliance"})-[:WORKS_IN]->(Stormwind)
+CREATE (Bolvar:Employee {name:"Bolvar", last_name:"Fordragon", job:"High lord"})-[:WORKS_IN]->(Stormwind)
+CREATE (Matthias:Employee {name:"Matthias", last_name:"Shaw", job:"Spymaster"})-[:WORKS_IN]->(Stormwind)
+CREATE (Genn:Employee {name:"Genn", last_name:"Graymane", job:"King of Gilneas"})-[:WORKS_IN]->(Stormwind)
+
+CREATE (Magni:Employee {name:"Magni", last_name: "Bronzebeard", job:"King of Khaz Modan"})-[:WORKS_IN]->(Ironforge)
+CREATE (Moira:Employee {name:"Moira", last_name: "Thaurissan", job:"Queen of the Dark Iron"})-[:WORKS_IN]->(Ironforge)
+CREATE (Falstad:Employee {name:"Falstad", last_name: "Wildhammer", job:"High Thane"})-[:WORKS_IN]->(Ironforge)
+
+CREATE (Tyrande:Employee {name:"Tyrande", last_name: "Whisperwind", job:"Priestess"})-[:WORKS_IN]->(Darnassus)
+CREATE (Malfurion:Employee {name:"Malfurion", last_name: "Stormrage", job:"Archdruid"})-[:WORKS_IN]->(Darnassus)
+CREATE (Shandris:Employee {name:"Shandris", last_name: "Feathermoon", job:"General"})-[:WORKS_IN]->(Darnassus)
+
+CREATE (Gelbin:Employee {name:"Gelbin", last_name: "Mekkatorque", job:"High Tinker"})-[:WORKS_IN]->(Gnomeregan)
+CREATE (Kelsey:Employee {name:"Kelsey", last_name: "Steelspark", job:"Rogue"})-[:WORKS_IN]->(Gnomeregan)
+CREATE (Overspark:Employee {name:"Overspark", last_name: "Tinkmaster", job:"Engineer"})-[:WORKS_IN]->(Gnomeregan)
+
+CREATE (Genn)-[:MANAGES]->(Matthias)
+CREATE (Magni)-[:MANAGES]->(Falstad)
+CREATE (Tyrande)-[:MANAGES]->(Shandris)
+CREATE (Gelbin)-[:MANAGES]->(Kelsey)
+CREATE (Gelbin)-[:MANAGES]->(Overspark)
+
+MATCH (a WHERE a.name = "Anduin") WITH a MATCH (n:Employee where n.name <> 'Anduin')CREATE (a)-[:MANAGES]->(n)
+
+
+
+
